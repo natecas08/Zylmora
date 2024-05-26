@@ -12,10 +12,11 @@ public class PlayerController : MonoBehaviour
     public float groundCheckDistance = 0.2f;
     public LayerMask groundLayer;
 
-    public float moveSpeed = 1.0f;
+    public float moveSpeed = 5.0f;
 
     private PlayerControls playerControls;
     private Rigidbody rb;
+    private Vector2 moveInput;
 
     private bool isGrounded = true;
     // Start is called before the first frame update
@@ -28,10 +29,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
-        
+
+        Vector2 moveVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+        Debug.Log("Fixed update: " + moveInput.x * moveSpeed);
+        rb.velocity = moveVelocity;
     }
 
-    private void OnJump()
+    public void OnJump()
     {
         if(isGrounded)
         {
@@ -45,9 +49,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnMove(InputValue inputValue)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        rb.velocity = inputValue.Get<Vector2>() * moveSpeed;
-
+        moveInput = context.ReadValue<Vector2>();
     }
+
 }
