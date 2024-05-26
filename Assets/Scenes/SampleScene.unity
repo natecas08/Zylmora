@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -215,6 +216,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb341ac4f9daa441a72b54b2a2ff1ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  camOffset: {x: 0, y: 3.5, z: 0}
 --- !u!1 &956298530
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +440,34 @@ PrefabInstance:
     - target: {fileID: 583658036292338599, guid: 05b054c9825dd7945b1661e58e753ec2, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135318836275130860, guid: 05b054c9825dd7945b1661e58e753ec2, type: 3}
+      propertyPath: doubleJumpEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135318836275130860, guid: 05b054c9825dd7945b1661e58e753ec2, type: 3}
+      propertyPath: groundCheckDistance
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135318836275130860, guid: 05b054c9825dd7945b1661e58e753ec2, type: 3}
+      propertyPath: jumpForceMultiplier
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135318836275130860, guid: 05b054c9825dd7945b1661e58e753ec2, type: 3}
+      propertyPath: doubleJumpForceMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869321768235003907, guid: 05b054c9825dd7945b1661e58e753ec2, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480014413877861168, guid: 05b054c9825dd7945b1661e58e753ec2, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4480014413877861168, guid: 05b054c9825dd7945b1661e58e753ec2, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9163331604037995335, guid: 05b054c9825dd7945b1661e58e753ec2, type: 3}
       propertyPath: m_LocalPosition.x

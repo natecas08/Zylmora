@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public float jumpForceMultiplier = 5.0f;
     public float groundCheckDistance = 0.2f;
+    public float doubleJumpForceMultiplier = 1.5f;
     public LayerMask groundLayer;
 
     public float moveSpeed = 5.0f;
@@ -26,26 +27,29 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundLayer);
 
         Vector2 moveVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
-        Debug.Log("Fixed update: " + moveInput.x * moveSpeed);
         rb.velocity = moveVelocity;
     }
 
-    public void OnJump()
+    public void OnJump(InputAction.CallbackContext ctx)
     {
-        if(isGrounded)
+        if(ctx.performed)
         {
-            rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode.Impulse);
-            doubleJumpUsed = false;
-        }
-        else if(doubleJumpEnabled && !doubleJumpUsed)
-        {
-            rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode.Impulse);
-            doubleJumpUsed = true;
+            if (isGrounded)
+            {
+                rb.AddForce(Vector2.up * jumpForceMultiplier, ForceMode.Impulse);
+                doubleJumpUsed = false;
+            }
+            else if (doubleJumpEnabled && !doubleJumpUsed)
+            {
+                rb.velocity = new Vector2(moveInput.x * moveSpeed, 0);
+                rb.AddForce(Vector2.up * jumpForceMultiplier * doubleJumpForceMultiplier, ForceMode.Impulse);
+                doubleJumpUsed = true;
+            }
         }
     }
 
