@@ -14,7 +14,7 @@ public class Stats : ScriptableObject {
 
     public int level;
 
-    public Vector2[] location;
+    public Vector2 location;
 
     //abilities
     public bool shield;
